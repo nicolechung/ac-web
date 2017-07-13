@@ -31,6 +31,7 @@ export Print from './Print'
 export Website from './Website'
 export Fullscreen from './Fullscreen'
 export MyLocation from './MyLocation'
+export NewRelease from './NewRelease'
 
 export Spinner from './Spinner'
 export MapLocation from './MapLocation'

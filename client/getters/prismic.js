@@ -28,6 +28,10 @@ export function getDocumentsOfType(state, type) {
 export function getDocumentForUid(state, type, uid) {
     const id = getDocumentId(state, type, uid)
 
+    return getDocumentForId(state, id)
+}
+
+export function getDocumentForId(state, id) {
     return state.prismic.documents.get(id)
 }
 
@@ -60,7 +64,15 @@ export function getDocumentFromParams(state, params) {
         }
     }
 
-    return state.prismic.documents.get(id)
+    return getDocumentForId(state, id)
+}
+
+export function getDocumentsFromParams(state, params) {
+    const { ids } = getResult(state, params)
+
+    return Array.from(ids)
+        .map(id => getDocumentForId(state, id))
+        .filter(Boolean)
 }
 
 // TODO: Move that selector out of here, only getters here!

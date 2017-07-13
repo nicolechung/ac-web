@@ -295,6 +295,34 @@ export function prismic(mapStateToProps, mapDispatchToProps = {}) {
     )
 }
 
+// TODO: Modify code to use this function instead of prismic
+export function prismicPatch(params, mapStateToProps, mapDispatchToProps = {}) {
+    function getParams(props) {
+        return typeof params === 'function' ? params(props) : params
+    }
+    const { load, paramsToKey } = PrismicActions
+
+    return compose(
+        connect(mapStateToProps, {
+            load,
+            ...mapDispatchToProps,
+        }),
+        lifecycle({
+            componentDidMount() {
+                this.props.load(getParams(this.props))
+            },
+            componentWillReceiveProps(nextProps) {
+                const nextParams = getParams(nextProps)
+                const oldParams = getParams(this.props)
+
+                if (paramsToKey(nextParams) !== paramsToKey(oldParams)) {
+                    this.props.load(nextParams)
+                }
+            },
+        })
+    )
+}
+
 export const generic = compose(
     setPropTypes({
         type: PropTypes.string,

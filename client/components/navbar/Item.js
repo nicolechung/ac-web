@@ -24,10 +24,11 @@ function Item({
     noWrap = false,
     children,
 }) {
+    const style = noWrap ? NOWRAP_STYLE : null
+    const styleName = isActive ? 'Item--active' : 'Item'
+
     return (
-        <li
-            style={noWrap ? NOWRAP_STYLE : null}
-            styleName={isActive ? 'Item--active' : 'Item'}>
+        <li style={style} styleName={styleName}>
             <a href="#" onClick={onClick}>
                 <span>{title}</span>
             </a>

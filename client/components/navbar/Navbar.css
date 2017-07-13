@@ -82,6 +82,10 @@
         background-color: var(--black);
     }
 
+    & svg > path[fill="black"] {
+        fill: white;
+    }
+
     &:before {
         content: "";
         position: absolute;

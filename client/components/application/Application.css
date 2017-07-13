@@ -1,4 +1,21 @@
+@import "../../styles/colors.css";
+
 .Application {
     height: 100%;
     position: relative;
+}
+
+.Feature {
+    & header > * {
+        margin: 0 0 0.5em 0;
+    }
+    & time {
+        display: block;
+        color: var(--gray-dark);
+        font-size: 0.85em;
+    }
+}
+
+.Feature--Headline {
+    font-weight: 700;
 }

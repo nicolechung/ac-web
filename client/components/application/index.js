@@ -5,3 +5,5 @@ export default Element({
     name: 'Application',
     styles,
 })
+
+export Feature from './Feature'
